@@ -1,10 +1,8 @@
-import "@babel/polyfill";
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { test } from '@/lib/test'
 
-import App from './App'
+console.log('hello webpack')
+document.write(`
+  <h1>hello webpack</h1>
+`)
 
-ReactDOM.render(
-	<App name="bill"/>,
-	document.getElementById('root')
-)
+test()

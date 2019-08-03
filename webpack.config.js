@@ -1,60 +1,24 @@
-const path=require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
-module.exports={
-	mode: 'production',//生产'development'开发
-	entry: {
-		main:["@babel/polyfill", "./src/index.js"],
-		// vendor:['react','react-dom']
+module.exports = {
+	mode: 'production',
+	entry: './src/index.js',
+	output: {
+		filename: "main.js",
+		path: path.join(__dirname, 'dist')
 	},
-	output:{
-		filename:"[name].js",
-		path:path.join(__dirname, 'build'),
-		publicPath:'',
-	},
-	module:{
-		rules:[{
-			test:/\.m?js$/,
-			exclude:/(node_modules|bower_components)/,
-			use:'babel-loader'
-		},{
-			test:/\.css$/,
-			use:['style-loader', 'css-loader']
-		},{
-			test:/\.(png|jpe?g|gif|webp)(\?.*)?$/,
-			use:[{
-				loader:'url-loader',
-				options: {
-          limit: 4096,
-          fallback: {
-            loader: 'file-loader',
-            options: {
-              name: 'img/[name].[hash:8].[ext]'
-            }
-          }
-        }
-			}]
-		}]
-	},
-	plugins:[
-		new HtmlWebpackPlugin({
-			chunks: [
-        'chunk-vendors',
-        'chunk-common',
-        'index'
-      ],
-      template: 'public/index.html',
-      filename: 'index.html',
-      title: undefined
-		})
-	],
-	devServer:{
-		// contentBase: path.join(__dirname, "dist"),
-		open:true,
+	devServer: {
+		open: true,
 		compress: true,
 		port: 3000,
-		proxy:{
-			'/api':'http://localhost:5000'
+		proxy: {
+			'/api': 'http://127.0.0.1:5000'
+		}
+	},
+	resolve: {
+		extensions: ['.js', '.json'],
+		alias: {
+			'@': path.join(__dirname, './src/'),
 		}
 	}
 }
