@@ -1,5 +1,7 @@
-import { test } from './lib/test'
+import { test } from './test'
+console.log(2121)
 
-document.write('<h1>hello webpack</h1>')
-
-test()
+window.onload = () => {
+  document.write('<h1>helloss! s</h1>')
+  test()
+}
