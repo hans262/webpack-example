@@ -1,7 +1,6 @@
 import { test } from './test'
-console.log(2121)
 
-window.onload = () => {
-  document.write('<h1>helloss! s</h1>')
-  test()
-}
+document.write('<h1>hello!</h1>')
+test()
+
+console.log(2112)
